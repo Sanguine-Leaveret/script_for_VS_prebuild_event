@@ -7,7 +7,7 @@ def char2singlequotachar(match):
 def str2charlist(match):
 	replace_str = '{'
 	char_split = re.compile(r'(\\x[a-fA-F0-9]{1,2}|\\[0-7]{1,3}|\\[a-z\"\'\\]|.)')
-	replace_str += char_split.sub(char2singlequotachar, match.group(1)[1:-1])[:-1]
+	replace_str += char_split.sub(char2singlequotachar, match.group(1)[1:-1])+"'\\x00'"
 	replace_str += '}'
 	return match.group(0).replace(match.group(1),replace_str)
 
